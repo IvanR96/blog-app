@@ -1,0 +1,18 @@
+header{
+    width: 100%;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+main{
+    flex: 1;
+}
+
+#comp-image{
+    border-radius: 15px;
+}
