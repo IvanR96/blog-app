@@ -1,0 +1,68 @@
+<%-include("partials/header.ejs")%>
+
+<main class="container">
+
+    <div class="container col-xxl-8 px-4 py-5"> 
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5"> 
+            <div class="col-10 col-sm-8 col-lg-6"> 
+                <img src="/images/Developer-screen.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy" id="comp-image"> 
+            </div> 
+            <div class="col-lg-6"> 
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Why Developers Are Architects of the Digital World</h1> 
+                <p class="lead">Every great website you visit — from your favorite online store to that cool personal portfolio — started with a web developer sitting in front of a blank code editor. Web developers are the digital architects who turn ideas into interactive experiences that shape how we connect, learn, and work online.</p> 
+                <p class="fst-italic">
+                    <% let date = new Date(); %>
+                    <% let fullDate = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`; %>
+                    <%= `Posted: ${fullDate}`%>
+                </p>
+            </div> 
+        </div> 
+    </div>
+
+
+<section class="posts">
+  <% posts.forEach(post => { %>
+    <div class="card container mt-5 mx-auto mb-5">
+      <div class="card-body">
+        <h5><%= post.title %></h5>
+        <p><%= post.content %></p>
+
+        <p>
+        <% let date = new Date(); %>
+        <% let fullDate = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`; %>
+        <%= `Posted: ${fullDate}`%>
+        </p>
+        <!-- Edit button -->
+        <a href="/edit/<%= post.id %>" class="btn btn-success">Edit Post</a>  
+
+        <!-- Delete button -->
+        <form action="/delete/<%= post.id %>" method="POST" class="d-inline">
+          <button type="submit" class="btn btn-danger">Remove Post</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</section>
+
+<section class="submission">
+    <h2 class="mb-4 text-center fw-bold">Create a Blog Post</h2>
+
+<form action="/new" method="POST" class="mx-auto mb-5" style="max-width: 600px;">
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input type="text" placeholder="Enter title..." name="title" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Content</label>
+    <textarea name="content" placeholder="Enter content..." class="form-control" rows="5" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Publish</button>
+</form>
+</section>
+
+
+
+
+<%-include('partials/footer.ejs')%>
